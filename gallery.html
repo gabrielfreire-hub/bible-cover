@@ -684,7 +684,7 @@
                 h += '<div class="card" onclick="om(\'' + fn + '\',\'' + d.s + '\',' + d.z + ',' + d.h + ',' + d.r + ')">';
                 h += '<span class="seg ' + SC[d.s] + '">' + d.s + '</span>';
                 h += '<span class="pvp">' + PV[d.s] + '</span>';
-                h += '<img src="Produzidas/' + fn + '" loading="lazy">';
+                h += '<img src="Produzidas/' + encodeURIComponent(fn) + '" loading="lazy">';
                 h += '<div class="inf"><div class="nm">' + fn.replace(/\.(jpg|png)$/, "") + '</div>';
                 h += '<div class="tg"><span class="' + tc + '">' + tz + '</span>';
                 h += '<span class="' + tsc + '">' + ts + '</span>';
@@ -701,7 +701,7 @@
             document.getElementById("d").style.display = x === "d" ? "" : "none";
         }
         function om(fn, s, z, h, r) {
-            document.getElementById("mi").src = "Produzidas/" + fn;
+            document.getElementById("mi").src = "Produzidas/" + encodeURIComponent(fn);
             var tz = z ? "CIERRE" : "SIN CIERRE", tc = z ? "tz" : "tn";
             var ts = h ? "STAMP" : "SIN STAMP", tsc = h ? "ts" : "tns";
             var tr = r ? "RELIEVE" : "SIN RELIEVE", trc = r ? "tr" : "tnr";
@@ -711,7 +711,7 @@
             document.getElementById("mov").innerHTML = ov;
             var refs = RF[s] || [];
             var rh = '<span class="rl">Referencia:</span>';
-            refs.forEach(function (r) { rh += '<img src="extracted_temp/' + r + '" loading="lazy">'; });
+            refs.forEach(function (r) { rh += '<img src="extracted_temp/' + encodeURIComponent(r) + '" loading="lazy">'; });
             document.getElementById("mref").innerHTML = rh;
             document.getElementById("m").classList.add("on");
         }
@@ -720,7 +720,7 @@
         function orm(s) {
             var refs = RF[s] || [];
             var h = '';
-            refs.forEach(function (r) { h += '<img src="extracted_temp/' + r + '" loading="lazy">'; });
+            refs.forEach(function (r) { h += '<img src="extracted_temp/' + encodeURIComponent(r) + '" loading="lazy">'; });
             document.getElementById("rmg").innerHTML = h;
             document.getElementById("rmh").textContent = s + ' - ' + SN[s] + ' - Referencias';
             document.getElementById("rm").classList.add("on");
@@ -733,7 +733,7 @@
                 if (!el) return;
                 var h = '';
                 var show = refs.slice(0, 2);
-                show.forEach(function (r) { h += '<img src="extracted_temp/' + r + '" loading="lazy" onclick="orm(\'' + s + '\')">'; });
+                show.forEach(function (r) { h += '<img src="extracted_temp/' + encodeURIComponent(r) + '" loading="lazy" onclick="orm(\'' + s + '\')">'; });
                 if (refs.length > 2) h += '<div class="more" onclick="orm(\'' + s + '\')">' + '+' + (refs.length - 2) + ' más</div>';
                 el.innerHTML = h;
             });
